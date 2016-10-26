@@ -5,7 +5,7 @@
   cvault.py init <vault_name>
   cvault.py save <account> <password> <description>
   cvault.py remove <entry_id>
-  cvault.py list
+  cvault.py list [-v]
 """
 from docopt import docopt
 from peewee import *
@@ -46,12 +46,16 @@ def remove_entry(entry_id):
     else:
         entry.delete_instance()
 
-def list_entries():
+def list_entries(verbose=False):
+    if verbose:
+        template = "{e.id}: {e.timestamp}|{e.acct}|{e.passwd}|{e.desc}"
+    else:
+        template = "{e.acct}|{e.passwd}|{e.desc}"
     for entry in Entry.select():
-        print("{e.id}: {e.timestamp}|{e.acct}|{e.passwd}|{e.desc}".format(e=entry))
+        print(template.format(e=entry))
 
 def cvault(vault_name, acct, passwd, desc, entry_id, init=False, save=False,
-        remove=False, dump=True):
+        remove=False, dump=True, verbose=False):
     if init:
         init_vault(vault_name)
     elif save:
@@ -59,7 +63,7 @@ def cvault(vault_name, acct, passwd, desc, entry_id, init=False, save=False,
     elif remove:
         remove_entry(entry_id)
     elif dump:
-        list_entries()
+        list_entries(verbose)
     else:
         list_entries()
 
@@ -76,6 +80,7 @@ def main():
         'remove': args['remove'],
         'entry_id': args['<entry_id>'],
         'dump': args['list'],
+        'verbose': args['-v'],
     }
 
     cvault(**kwargs)
