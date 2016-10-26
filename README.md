@@ -39,10 +39,10 @@ And follow the instructions to achive the goal.
 ### Non-interactive Mode
 
 ~~~ sh
-$ cvault --save --account <account> --password <password> --description <description> # save a new entry
-$ cvault --remove <id> # remove certain entry
-$ cvault --list # list all the entries reside in the vault
-$ cvault --show <id> # show the exact entry
-$ cvault --search --account <account> # with exact account name
-$ cvault --search --description <pattern> # pattern searching in description
+$ ./cvault.py save -a <account> -p<password> -d <description> # save a new entry
+$ ./cvault.py remove <id> # remove certain entry
+$ ./cvault.py list # list all the entries reside in the vault
+$ ./cvault.py show <id> # show the exact entry
+$ ./cvault.py search -a <account> # with exact account name
+$ ./cvault.py search -d <pattern> # pattern searching in description
 ~~~
