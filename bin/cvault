@@ -4,11 +4,11 @@
 """Credential Vault (cvault)
 
 Usage:
-  cvault.py init <vault_name>
-  cvault.py save <account> <password> <description>
-  cvault.py remove <entry_id>
-  cvault.py list [-v]
-  cvault.py show <entry_id>
+  cvault init <vault_name>
+  cvault save <account> <password> <description>
+  cvault remove <entry_id>
+  cvault list [-v]
+  cvault show <entry_id>
 
 Options:
   -h --help             show this help message and exit
