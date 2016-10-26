@@ -1,11 +1,17 @@
 #! /usr/bin/env python
 # -*- coding: utf-8 -*-
 
-"""Usage:
+"""Credential Vault (cvault)
+
+Usage:
   cvault.py init <vault_name>
   cvault.py save <account> <password> <description>
   cvault.py remove <entry_id>
   cvault.py list [-v]
+
+Options:
+  -h --help             show this help message and exit
+  --version             show version and exit
 """
 from docopt import docopt
 from peewee import *
