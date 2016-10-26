@@ -44,7 +44,10 @@ def init_vault(vault_name):
 
 def save_entry(acct, passwd, desc):
     entry = Entry(acct=acct, passwd=passwd, desc=desc)
-    entry.save()
+    try:
+        entry.save()
+    except OperationalError:
+        print("No vault can be used.")
 
 def remove_entry(entry_id):
     try:
