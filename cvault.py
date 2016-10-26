@@ -22,7 +22,8 @@ import datetime
 import os
 
 db = SqliteExtDatabase('vault.db')
-
+SIMPLE_TMPL = "{e.acct}|{e.passwd}|{e.desc}"
+DETAIL_TMPL = "{e.id}: {e.timestamp}|{e.acct}|{e.passwd}|{e.desc}"
 
 class Entry(Model):
     acct = CharField()
@@ -55,9 +56,9 @@ def remove_entry(entry_id):
 
 def list_entries(verbose=False):
     if verbose:
-        template = "{e.id}: {e.timestamp}|{e.acct}|{e.passwd}|{e.desc}"
+        template = SIMPLE_TMPL
     else:
-        template = "{e.acct}|{e.passwd}|{e.desc}"
+        template = DETAIL_TMPL
     for entry in Entry.select():
         print(template.format(e=entry))
 
@@ -67,8 +68,7 @@ def show_entry(entry_id):
     except Entry.DoesNotExist:
         print('The given entry ID does not exist.')
     else:
-        print("{e.id}: {e.timestamp}|{e.acct}|{e.passwd}|{e.desc}"
-              .format(e=entry))
+        print(DETAIL_TMPL.format(e=entry))
 
 def cvault(vault_name, acct, passwd, desc, entry_id, init=False, save=False,
         remove=False, dump=True, show=False, verbose=False):
