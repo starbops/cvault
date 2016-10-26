@@ -48,7 +48,7 @@ def remove_entry(entry_id):
 
 def list_entries():
     for entry in Entry.select():
-        print("{e.id}: {e.acct}|{e.passwd}|{e.desc}" .format(e=entry))
+        print("{e.id}: {e.timestamp}|{e.acct}|{e.passwd}|{e.desc}".format(e=entry))
 
 def cvault(vault_name, acct, passwd, desc, entry_id, init=False, save=False,
         remove=False, dump=True):
