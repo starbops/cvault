@@ -8,6 +8,7 @@ Usage:
   cvault.py save <account> <password> <description>
   cvault.py remove <entry_id>
   cvault.py list [-v]
+  cvault.py show <entry_id>
 
 Options:
   -h --help             show this help message and exit
@@ -60,8 +61,17 @@ def list_entries(verbose=False):
     for entry in Entry.select():
         print(template.format(e=entry))
 
+def show_entry(entry_id):
+    try:
+        entry = Entry.get(Entry.id == entry_id)
+    except Entry.DoesNotExist:
+        print('The given entry ID does not exist.')
+    else:
+        print("{e.id}: {e.timestamp}|{e.acct}|{e.passwd}|{e.desc}"
+              .format(e=entry))
+
 def cvault(vault_name, acct, passwd, desc, entry_id, init=False, save=False,
-        remove=False, dump=True, verbose=False):
+        remove=False, dump=True, show=False, verbose=False):
     if init:
         init_vault(vault_name)
     elif save:
@@ -70,6 +80,8 @@ def cvault(vault_name, acct, passwd, desc, entry_id, init=False, save=False,
         remove_entry(entry_id)
     elif dump:
         list_entries(verbose)
+    elif show:
+        show_entry(entry_id)
     else:
         list_entries()
 
@@ -86,6 +98,7 @@ def main():
         'remove': args['remove'],
         'entry_id': args['<entry_id>'],
         'dump': args['list'],
+        'show': args['show'],
         'verbose': args['-v'],
     }
 
