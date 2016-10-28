@@ -1,2 +1,4 @@
 vault.db
 *.egg-info/
+build/
+dist/
