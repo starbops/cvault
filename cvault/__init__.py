@@ -106,7 +106,3 @@ def main():
     }
 
     cvault(**kwargs)
-
-
-if __name__ == '__main__':
-    main()
