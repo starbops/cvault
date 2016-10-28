@@ -46,6 +46,9 @@ setup(
         keywords='credential memo',
         packages=find_packages(exclude=['tests']),
         install_requires=['docopt'],
+        setup_requires=['pytest-runner'],
+        tests_require=['pytest'],
+        #test_suite='tests',
         entry_points={
             'console_scripts': [
                 'cvault=cvault:main',
