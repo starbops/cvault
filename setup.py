@@ -1,18 +1,28 @@
 """A setuptools based setup module
 """
-
 from setuptools import setup, find_packages
 from codecs import open
-from os import path
 
-here = path.dirname(__file__)
+import os
+import sys
 
-with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
+version = '0.1.2'
+
+if sys.argv[-1] == 'publish':
+    os.system('python3 setup.py sdist upload')
+    os.system('python3 setup.py bdist_wheel upload')
+    os.system("git tag -s {} -m 'version {}'".format(version, version))
+    os.system('git push --tags')
+    sys.exit()
+
+here = os.path.dirname(__file__)
+
+with open(os.path.join(here, 'README.rst'), encoding='utf-8') as f:
     long_description = f.read()
 
 setup(
         name='cvault',
-        version='0.1.2',
+        version=version,
         description='Credential Vault',
         long_description = long_description,
         url='https://github.com/starbops/cvault',
