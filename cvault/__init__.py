@@ -89,7 +89,7 @@ def cvault(vault_name, acct, passwd, desc, entry_id, init=False, save=False,
         list_entries()
 
 def main():
-    args = docopt(__doc__, version='cvault 0.1')
+    args = docopt(__doc__, version='cvault 0.1.1')
 
     kwargs = {
         'init': args['init'],
