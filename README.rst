@@ -7,11 +7,11 @@ Credential Vault (cvault) is a place where you can save your memory about creden
 Installation
 ------------
 
-Run the installer script to install dependencies and the cvault program.
+To install dependencies and the cvault program.
 
 .. code-block:: bash
 
-    $ ./install.sh
+    $ python setup.py install
 
 Then initialize the vault (database).
 
